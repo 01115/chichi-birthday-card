@@ -1,0 +1,935 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+.stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+}
+
+.stage.active {
+  display: flex !important;
+}
+
+/* Button Styling */
+.btn {
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 50px;
+  /* Pill shape */
+  padding: 10px 30px;
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.2rem;
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.1s;
+  margin-top: 15px;
+  user-select: none;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+/* Image sizing helpers */
+img {
+  max-width: 90%;
+  height: auto;
+}
+
+
+
+/* ── LOCK SCREEN ── */
+#lock-screen {
+  flex-direction: row;
+  align-items: center;
+  background-image: url("https://i.pinimg.com/1200x/95/a8/fc/95a8fc368725fe54bab6da9b661aafe9.jpg");
+  justify-content: center;
+  gap: 150px;
+  padding: 40px;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+
+}
+
+#lock-screen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+
+/* ── POLAROID ── */
+.polaroid-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.polaroid {
+  background: white;
+  padding: 14px 14px 40px 14px;
+  width: 340px;
+  box-shadow: 4px 6px 18px rgba(0, 0, 0, 0.25);
+  transform: rotate(-4deg);
+}
+
+/* Replace the .photo-placeholder with an <img src="your-photo.jpg"> if you want a real photo */
+.photo-placeholder {
+  width: 100%;
+  height: 300px;
+  background: #f0e6e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+}
+
+.polaroid-label {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #999;
+  font-style: italic;
+}
+
+
+.bear {
+  position: absolute;
+  bottom: -30px;
+  left: -20px;
+  font-size: 52px;
+  transform: rotate(-8deg);
+}
+
+/* ── KEYPAD SIDE ── */
+.keypad-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.keypad-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: black;
+  letter-spacing: 0.5px;
+  padding-bottom: 10px;
+}
+
+/* ── CODE BOXES ── */
+.code-boxes {
+  display: flex;
+  gap: 10px;
+}
+
+.code-box {
+  width: 52px;
+  height: 52px;
+  border: 3px solid #C02020;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: 900;
+  color: red;
+  background: rgba(255, 255, 255, 0.12);
+  transition: 0.15s;
+}
+
+.code-box.filled {
+  background: white;
+  border-color: #C02020;
+  color: #C02020;
+}
+
+.code-box.shake {
+  animation: shake 0.4s ease;
+  border-color: #ff9e9e;
+  background: rgba(255, 80, 80, 0.3);
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  20% {
+    transform: translateX(-6px);
+  }
+
+  40% {
+    transform: translateX(6px);
+  }
+
+  60% {
+    transform: translateX(-4px);
+  }
+
+  80% {
+    transform: translateX(4px);
+  }
+}
+
+/* ── NUMBER PAD ── */
+.numpad {
+  display: grid;
+  grid-template-columns: repeat(3, 64px);
+  gap: 10px;
+}
+
+.key {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: #C02020;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s, 0.1s;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  user-select: none;
+}
+
+.key:active,
+.key.pressed {
+  transform: scale(0.92);
+  background: #C02020;
+}
+
+.key.delete-key {
+  font-size: 18px;
+  background: rgba(255, 255, 255, 0.55);
+  color: #C02020;
+}
+
+.key.star-hash {
+  background: rgba(255, 255, 255, 0.55);
+  color: #C02020;
+  font-size: 18px;
+}
+
+/* ── ERROR MESSAGE ── */
+.error-msg {
+  font-size: 14px;
+  font-weight: 700;
+  color: black;
+  text-align: center;
+  min-height: 20px;
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+
+.error-msg.visible {
+  opacity: 1;
+}
+
+.hint {
+  font-size: 13px;
+  color: black;
+  font-style: italic;
+  margin-top: 30px;
+}
+
+@media (max-width: 600px) {
+  #lock-screen {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .polaroid {
+    width: 200px;
+  }
+
+  .photo-placeholder {
+    height: 160px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- STAGE 1 --- */
+#stage1 {
+  background-image: url("https://i.pinimg.com/1200x/95/a8/fc/95a8fc368725fe54bab6da9b661aafe9.jpg");
+  background-repeat: repeat;
+}
+
+/* Typewriter Animation Class */
+.typing-text {
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 auto 20px auto;
+  letter-spacing: 0.15em;
+  animation: typing 2.5s steps(40, end);
+  text-align: center;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+#stage1 h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+#miffy-stage-1 {
+  width: 300px;
+  /* Medium Size */
+  margin-bottom: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+/* --- STAGE 2 --- */
+#stage2 {
+  background-image: url("https://i.pinimg.com/736x/d6/89/e3/d689e3469bbbce8942e5e6fba44da791.jpg");
+}
+
+#stage2 h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.button-container {
+  display: flex;
+  gap: 20px;
+  /* Space between buttons */
+  margin-bottom: 30px;
+}
+
+#miffy-stage-2 {
+  width: 250px;
+  /* Medium Size */
+}
+
+
+
+
+
+
+
+
+
+/* --- STAGE 3 --- */
+#stage3 {
+  background-image: url("https://i.pinimg.com/736x/24/99/f8/2499f8e388d5037f92b9f598ff8a26f4.jpg");
+  position: relative;
+}
+
+/* Fullscreen Video Background */
+.video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* Container to stack items on top of the GIF */
+.box-container {
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  /* Limit width to keep it looking nice */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#stage3-box {
+  width: 100%;
+  display: block;
+}
+
+#cake-btn {
+  position: absolute;
+  width: 150px;
+  /* Small but clickable */
+  top: 33%;
+  /* Positioned visually below the text in the GIF */
+  cursor: pointer;
+  transition: transform 0.2s;
+  z-index: 10;
+}
+
+#cake-btn:hover {
+  transform: scale(1.1);
+}
+
+
+
+
+
+
+/* --- STAGE 4 --- */
+#stage4 {
+  background-image: url("https://i.pinimg.com/736x/62/0c/c6/620cc6771238e3feef34789ad9145d2b.jpg");
+  position: relative;
+}
+
+#stage4-box {
+  width: 100%;
+  display: block;
+}
+
+#stage4 h2 {
+  font-size: 2.5rem;
+  padding-top: 10px;
+  margin-bottom: 270px;
+  text-align: center;
+}
+
+#gift-img {
+  position: absolute;
+  width: 250px;
+  gap: 40px;
+  top: 45%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+}
+
+#letter {
+  transform: rotate(3deg);
+  cursor: pointer;
+}
+
+#photo {
+  transform: rotate(-4deg);
+  cursor: pointer;
+}
+
+#music {
+  transform: rotate(4deg);
+  cursor: pointer;
+}
+
+#letter:hover,
+#photo:hover,
+#music:hover {
+  transform: scale(1.1);
+}
+
+
+#next-btn {
+  border: 1px solid #407ca2;
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+  font-size: 1rem;
+  text-decoration: underline;
+  background: white;
+  color: #407ca2;
+  z-index: 10;
+}
+
+
+
+
+/* --- STAGE 5 --- */
+#stage5 {
+  background-image: url("https://i.pinimg.com/1200x/ce/c8/d9/cec8d9b1abd98dbd86313b343a4a6872.jpg");
+  background-repeat: no-repeat;
+  background-size: 110%;
+  background-position: right;
+}
+
+#greeting-text {
+  color: white;
+  text-align: center;
+  font-size: 30px;
+  margin: 0;
+}
+
+.container {
+  height: 500px;
+  display: grid;
+  place-items: center;
+}
+
+.container>.envelope-wrapper {
+  background: #f5edd1;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+}
+
+.container .envelope-wrapper .envelope {
+  position: relative;
+  width: 300px;
+  height: 230px;
+}
+
+.envelope-wrapper>.envelope::before {
+  content: "";
+  position: absolute;
+  display: flex;
+  top: 0;
+  z-index: 2;
+  border-top: 130px solid #cceef9;
+  border-right: 150px solid transparent;
+  border-left: 150px solid transparent;
+  transform-origin: top;
+  transition: all 0.5s ease-in-out 0.7s;
+}
+
+.container .envelope-wrapper .envelope::after {
+  content: "";
+  position: absolute;
+  display: flex;
+  z-index: 2;
+  width: 0;
+  height: 0;
+  border-top: 130px solid transparent;
+  border-right: 150px solid #c2e8f7;
+  border-bottom: 100px solid #baddf1;
+  border-left: 150px solid #c2e8f7;
+}
+
+.envelope>.letter {
+  position: absolute;
+  padding: 0;
+  right: 20%;
+  bottom: 0;
+  width: 54%;
+  height: 100%;
+  background: #f5edd1;
+  text-align: center;
+  transition: all 1s ease-in-out;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  padding: 20px 10px;
+  opacity: 0;
+  padding: 8px 10px;
+}
+
+.container .envelope-wrapper .envelope .letter .text {
+  color: #C02020;
+  text-align: left;
+  font-size: 10px;
+  margin-top: 0;
+}
+
+
+.heart {
+  position: absolute;
+  top: 53%;
+  left: 50%;
+  z-index: 4;
+  transform: translate(-50%, -20%);
+  transition: transform 0.5s ease-in-out 1s;
+  cursor: pointer;
+}
+
+.custom-image-btn {
+  background-size: cover;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border: none;
+  cursor: pointer;
+}
+
+
+/* TEXT */
+.text-heading {
+  text-align: center;
+  font-size: 17px;
+  color: #407ca2;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding: 0;
+  font-family: "Pinyon Script", cursive;
+}
+
+.text-second-heading {
+  font-size: 12px;
+  color: #407ca2;
+  font-style: italic;
+  text-align: center;
+  font-family: "Pinyon Script", cursive;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+.text-heading+.text-heading {
+  margin-top: 4px;
+}
+
+.text-to-from {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.to-from-lines {
+  flex: 0.9;
+  min-width: 0;
+}
+
+.to-from-lines p {
+  font-size: 7px;
+  color: #407ca2;
+  border-bottom: 1px solid #407ca2;
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.stamps-boxes {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.stamp {
+  width: 30px;
+  height: 40px;
+  object-fit: cover;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+
+  --r: 3px;
+  aspect-ratio: 0.5;
+  padding: var(--r);
+  background: #c0a880;
+  mask:
+    radial-gradient(50% 50%, #0000 66%, #000 67%) round var(--r) var(--r)/calc(2*var(--r)) calc(2*var(--r)),
+    conic-gradient(#000 0 0) content-box;
+}
+
+.text-body {
+  font-size: 5px;
+  color: #407ca2;
+  font-style: italic;
+  text-align: justify;
+  padding: 0 10px 0 10px;
+}
+
+#ending {
+  font-size: 5px;
+  color: #407ca2;
+  font-style: italic;
+  text-align: center;
+
+}
+
+.text-sig {
+  margin-top: 2px;
+  font-size: 5px;
+  color: #407ca2;
+  font-style: italic;
+  text-align: center;
+}
+
+/* ANIMATIONS */
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -7.5px;
+}
+
+.heart::after {
+  right: -7.5px;
+}
+
+.flap {
+  transform: scale(1.5) translateY(50%);
+  transition: transform 1s ease-in-out;
+}
+
+.flap .envelope::before {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.flap .envelope .letter {
+  bottom: 100px;
+  transform: scale(1.5);
+  transition-delay: 1.5s;
+  opacity: 1;
+  padding-top: 20px;
+}
+
+.flap .heart {
+  transition-delay: 0.4s;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* --- STAGE 6 --- */
+#stage6 {
+  background-image: url("photoscreen/image.png");
+  background-size: cover;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.element {
+  position: absolute;
+  animation: slideUp 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+#captcha-box {
+  left: 2%;
+  width: 570px;
+  animation-delay: 0.2s;
+}
+
+#hachiware {
+  top: 4%;
+  left: 29%;
+  width: 140px;
+  animation-delay: 0.3s;
+}
+
+#newjeans {
+  top: 7%;
+  left: 45%;
+  width: 400px;
+  animation-delay: 0.4s;
+}
+
+#www {
+  top: 16%;
+  left: 40%;
+  width: 470px;
+  animation-delay: 0.5s;
+}
+
+#twinkle {
+  bottom: 0;
+  left: 36%;
+  width: 270px;
+  animation-delay: 0.5s;
+}
+
+#canon {
+  top: 0;
+  right: 5px;
+  width: 500px;
+  --rotation: -15deg;
+  animation-delay: 0.5s;
+}
+
+#chiikawa {
+  top: 2%;
+  right: 15px;
+  width: 180px;
+  animation-delay: 0.7s;
+}
+
+
+#yearbook {
+  top: 55%;
+  left: 55%;
+  width: 300px;
+  animation-delay: 0.7s;
+}
+
+#both {
+  top: 53%;
+  right: 5%;
+  width: 320px;
+  animation-delay: 0.7s;
+}
+
+#goldfish {
+  bottom: 30%;
+  right: 20%;
+  width: 180px;
+  animation-delay: 0.8s;
+}
+
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100vh) rotate(5deg);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0) rotate(var(--rotation));
+    opacity: 1;
+  }
+}
+
+
+
+
+
+/* --- STAGE 7 --- */
+
+#stage7 {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 350px;
+  position: relative;
+  background-color: #4e492d;
+}
+
+.vinyl-wrapper {
+  position: relative;
+  width: 600px;
+  height: 500px;
+  margin-left: 0;
+  flex-shrink: 0;
+}
+
+.album {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  width: 500px;
+  box-shadow: 10px 0 20px rgba(0, 0, 0, 0.3);
+  object-fit: cover;
+}
+
+.vinyl-spin {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 10;
+  width: 500px;
+  border-radius: 50%;
+
+  animation: spin 4s linear infinite;
+  animation-play-state: paused;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.is-playing .record {
+  animation-play-state: running;
+  right: -160px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lyrics,
+.spotify {
+  width: 400px;
+}
+
+/* BACK BUTTON */
+#back-btn {
+  border: 1px solid #407ca2;
+  position: absolute;
+  bottom: 15px;
+  right: 10px;
+  transform: translateX(-50%);
+  font-weight: bold;
+  font-size: 1rem;
+  text-decoration: underline;
+  background: white;
+  color: #407ca2;
+  z-index: 10;
+}
+
+
+
+/* --- STAGE 8 --- */
+#stage8 {
+  background-image: url("https://i.pinimg.com/control1/736x/2d/ba/fb/2dbafb6469e2b4f7fd578e42eb04f8db.jpg");
+  position: relative;
+}
+
+.ending {
+  width: 50%;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  opacity: 1;
+  border-radius: 50%;
+}

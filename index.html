@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChiChi's Birthdayyyy!</title>
+  <link href="styles.css" rel="stylesheet" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Pinyon+Script&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div id="lock-screen" class="stage active">
+    <div class="polaroid-wrap">
+      <div class="polaroid">
+        <div class="photo-placeholder">
+          <video style="width:100%; height:300px; object-fit: cover; display: block;" controls>
+            <source src="chichi/introvid.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="polaroid-label">hehehehhehhe ♡</div>
+      </div>
+      <div class="bear">🐻‍❄️</div>
+    </div>
+
+    <!-- RIGHT: Keypad -->
+    <div class="keypad-side">
+      <div class="keypad-title">Enter a passcode</div>
+
+      <div class="code-boxes" id="code-boxes">
+        <div class="code-box" id="box-0"></div>
+        <div class="code-box" id="box-1"></div>
+        <div class="code-box" id="box-2"></div>
+        <div class="code-box" id="box-3"></div>
+      </div>
+
+      <div class="error-msg" id="error-msg">oh no chichi, that's not right 😢 try again!</div>
+
+      <div class="numpad" id="numpad">
+        <button class="key" data-val="1">1</button>
+        <button class="key" data-val="2">2</button>
+        <button class="key" data-val="3">3</button>
+        <button class="key" data-val="4">4</button>
+        <button class="key" data-val="5">5</button>
+        <button class="key" data-val="6">6</button>
+        <button class="key" data-val="7">7</button>
+        <button class="key" data-val="8">8</button>
+        <button class="key" data-val="9">9</button>
+        <button class="key star-hash" data-val="*">✱</button>
+        <button class="key" data-val="0">0</button>
+        <button class="key delete-key" data-val="del">⌫</button>
+      </div>
+
+      <div class="hint">hint — when's your birthday Chichi?</div>
+    </div>
+  </div>
+
+
+  <div id="stage1" class="stage">
+    <h1 class="typing-text">Happy 17th Birthday ChiChi!</h1>
+    <img src="https://i.pinimg.com/736x/79/5a/cd/795acd2c75ef19c843c0b41c9e7ed6f0.jpg" alt="Chiikawa"
+      id="miffy-stage-1" />
+    <button class="btn" onclick="goToStage(2)">Click thisss :3</button>
+  </div>
+
+  <div id="stage2" class="stage">
+    <h2 class="typing-text" style="animation-delay: 0.5s">
+      i have a suprise for <br />
+      you, wanna see it?
+    </h2>
+    <div class="button-container">
+      <button class="btn" onclick="goToStage(3)">yes!!</button>
+      <button class="btn" onclick="alert('Chichi nono click the other one! :3')">
+        no thanks.
+      </button>
+    </div>
+    <img src="https://i.pinimg.com/736x/8d/8b/3f/8d8b3f4fdb0e9be8c37a5bc260c5e843.jpg" alt="hachiware thumbs up"
+      id="miffy-stage-2" />
+  </div>
+
+  <div id="stage3" class="stage">
+    <h2 class="typing-text" id="click-the-button">tap on the cake to open your gift!</h2>
+    <div class="box-container">
+      <img src="elements/image-removebg-preview.png" alt="Open Gift" id="stage3-box" />
+      <img src="elements/cake.png" alt="Cake Button" id="cake-btn" onclick="goToStage(4)" />
+    </div>
+  </div>
+
+  <div id="stage4" class="stage">
+    <h2 class="typing-text">Choose one of theseeee!!!</h2>
+    <div class="box-container" id="gift-img">
+      <img src="elements/stamp.png" alt="letter" id="letter" onclick="goToStage(5)" />
+      <img src="elements/camera.png" alt="camera" id="photo" onclick="goToStage(6)" />
+      <img src="elements/cd.png" alt="cd" id="music" onclick="goToStage(7)" />
+    </div>
+
+    <button class="btn" id="next-btn" onclick="goToStage(8)">Next</button>
+
+  </div>
+
+  <div id="stage5" class="stage">
+    <p class="typing-text" id="greeting-text">You got a letter! <br> Click on the JiJi stamp to open!</p>
+
+    <div class="container">
+      <div class="envelope-wrapper" id="wrapper">
+        <div class="envelope">
+          <div class="letter">
+            <div class="text">
+              <p class="text-heading">A Birthday Letter</p>
+
+              <div class="text-to-from">
+                <div class="to-from-lines">
+                  <p>TO: &nbsp;The Cutest Person</p>
+                  <p>FROM: &nbsp; Hehe</p>
+                </div>
+
+                <div class="stamps-boxes">
+                  <img src="chichi/photo1.JPEG" alt="photo1" class="stamp" style="object-fit:cover;" />
+                  <img src="chichi/IMG_1862.JPG" alt="photo2" class="stamp" style="object-fit:cover;" />
+                </div>
+              </div>
+
+              <p class="text-second-heading">Ma ChiChi</p>
+              <p class="text-body">Happy Birthday to my fav ghibli lover, chiikawa obsessed and polar bear.
+                Thank you for always being so nice, kind and tolerate my weirdness.
+                I hope 17 treats you well and hope we can make more memories tgt!
+                Only one year to go!</p>
+              <p class="text-body" id="ending">Love u a lot!!!</p>
+              <p class="text-sig">-Emma 💗-</p>
+            </div>
+          </div>
+        </div>
+        <div class="heart">
+          <button class="custom-image-btn" id="hideButton">
+            <img src="elements/kiki.png" />
+          </button>
+        </div>
+      </div>
+    </div>
+    <button class="btn" id="back-btn" onclick="goToStage(4)">Back</button>
+  </div>
+
+  <div id="stage6" class="stage">
+    <img src="photoscreen/test.png" id="captcha-box" class="element" alt="Captcha Box" />
+    <img src="photoscreen/hachiware.png" id="hachiware" class="element" alt="Hachiware" />
+    <img src="photoscreen/newjeans.png" id="newjeans" class="element" alt="NewJeans" />
+    <img src="photoscreen/www.png" id="www" class="element" alt="WWW Photo" />
+    <img src="photoscreen/twinkle.png" id="twinkle" class="element" alt="Twinkle Twinkle" />
+    <img src="photoscreen/canoncam.png" id="canon" class="element" alt="Canon Camx" />
+    <img src="photoscreen/chiikawa.png" id="chiikawa" class="element" alt="Chiikawa" />
+    <img src="photoscreen/yearbook.png" id="yearbook" class="element" alt="Yearbook" />
+    <img src="photoscreen/both.png" id="both" class="element" alt="ChiChi & I" />
+    <img src="photoscreen/goldfish.png" id="goldfish" class="element" alt="Goldfish" />
+
+    <button class="btn" id="back-btn" onclick="goToStage(4)">Back</button>
+  </div>
+
+  <div id="stage7" class="stage">
+    <div class="vinyl-wrapper">
+      <img src="vinylscreen/lilyofthevalley.png" class="album" alt="Album Cover" />
+      <img src="vinylscreen/cd.png" class="vinyl-spin" id="vinyl-cd" />
+    </div>
+
+    <div class="info">
+      <img src="vinylscreen/lyrics.png" class="lyrics" alt="Lyrics" />
+      <img src="vinylscreen/spotify.PNG" class="spotify" alt="Spotify Code" />
+    </div>
+
+    <audio id="myAudio" src="vinylscreen/song.mp3" loop></audio>
+
+    <button class="btn" id="back-btn" onclick="goToStage(4)">Back</button>
+  </div>
+
+  <div id="stage8" class="stage">
+    <img src="elements/ending-screen.png" class="ending" alt="design" />
+  </div>
+  <script src="main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.9.1/tsparticles.confetti.bundle.min.js"></script>
+</body>
+
+</html>
